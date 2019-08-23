@@ -18,10 +18,10 @@ namespace RabbitMq_webApi.Controllers
     {
         private readonly ILogger _logger;
 
-        public SenderController(ILogger<SenderController> logger)
-        {
-            _logger = logger;
-        }
+        //public SenderController(ILogger<SenderController> logger)
+        //{
+        //    _logger = logger;
+        //}
 
 
         [HttpGet]
@@ -41,15 +41,16 @@ namespace RabbitMq_webApi.Controllers
                                  exclusive: false,
                                  autoDelete: false,
                                   arguments: null);
-                //Console.WriteLine("Enter Your Message u want to send ");
-                //string message = Console.ReadLine();
-                var message = "Message From Sender";
+                Console.WriteLine("Enter Your Message u want to send ");
+                string message = Console.ReadLine();
+               // var message = "Message From Sender";
                 var body = Encoding.UTF8.GetBytes(message);
                 channel.BasicPublish(exchange: "",
                                      routingKey: "Rushalisoni",
                                      basicProperties: null,
                                      body: body);
-                _logger.LogInformation(message);
+                //_logger.LogInformation(message);
+
 
 
                 //Log.Logger = new LoggerConfiguration().WriteTo.File("TextFile.txt").CreateLogger();
