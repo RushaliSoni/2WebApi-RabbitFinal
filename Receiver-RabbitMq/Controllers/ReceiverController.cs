@@ -46,14 +46,17 @@ namespace Receiver_RabbitMq.Controllers
                                      consumer: consumer);
                 consumer.Received += (model, ea) =>
                 {
-                    //var eventName = ea.RoutingKey;
-                    message += Encoding.UTF8.GetString(ea.Body);
-                    channel.BasicAck(ea.DeliveryTag, multiple: false);
+                    var body = ea.Body;
+                    message = Encoding.UTF8.GetString(body);
+                   
                 };
+                channel.BasicConsume(queue: "Rushalisoni",
+                                     autoAck: true,
+                                     consumer: consumer);
 
                 channel.QueuePurge("Rushalisoni");
-                //return message send from sender side 
                 return Ok(message);
+                
 
                 
             }
