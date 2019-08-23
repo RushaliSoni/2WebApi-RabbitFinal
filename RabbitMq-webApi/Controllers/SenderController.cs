@@ -46,7 +46,7 @@ namespace RabbitMq_webApi.Controllers
 
                 //Console.WriteLine("Enter Your Message u want to send ");
                 //string message = Console.ReadLine();
-               var message = "Message From Sender";
+               var message = "Now It's Work Perfectly :))))))";
                 var body = Encoding.UTF8.GetBytes(message);
                 channel.BasicPublish(exchange: "",
                                      routingKey: "Rushalisoni",
