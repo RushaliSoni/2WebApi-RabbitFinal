@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using RabbitMQ.Client;
+using Serilog;
 
 namespace RabbitMq_webApi.Controllers
 {
@@ -16,12 +17,12 @@ namespace RabbitMq_webApi.Controllers
     [ApiController]
     public class SenderController : ControllerBase
     {
-        private readonly ILogger _logger;
+        //private readonly ILogger _logger;
 
-        public SenderController(ILogger<SenderController> logger)
-        {
-            _logger = logger;
-        }
+        //public SenderController(ILogger<SenderController> logger)
+        //{
+        //    _logger = logger;
+        //}
 
 
         [HttpGet]
@@ -41,19 +42,20 @@ namespace RabbitMq_webApi.Controllers
                                  exclusive: false,
                                  autoDelete: false,
                                   arguments: null);
-                Console.WriteLine("Enter Your Message u want to send ");
-                string message = Console.ReadLine();
-               // var message = "Message From Sender";
+                // Here SuccessFully send message through console but right now comment this code
+
+                //Console.WriteLine("Enter Your Message u want to send ");
+                //string message = Console.ReadLine();
+               var message = "Message From Sender";
                 var body = Encoding.UTF8.GetBytes(message);
                 channel.BasicPublish(exchange: "",
                                      routingKey: "Rushalisoni",
                                      basicProperties: null,
                                      body: body);
-                _logger.LogInformation(message);
+               // _logger.LogInformation(message);
 
-
-
-                //Log.Logger = new LoggerConfiguration().WriteTo.File("TextFile.txt").CreateLogger();
+                Log.Logger = new LoggerConfiguration().WriteTo.File("TextFile.txt").CreateLogger();
+                Log.Information(message);
                 //TextWriter tw = new StreamWriter("TextFile.txt");
                 //TextReader tr = new StreamReader("TextFile.txt");
                 // tw.WriteLine(message);

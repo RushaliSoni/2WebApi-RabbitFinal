@@ -27,12 +27,12 @@ namespace RabbitMq_webApi
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
-            services.AddSwaggerGen(c =>
-                   {
-                       c.SwaggerDoc("v1", new Info { Title = "Core API", Description = "Swagger core API" });
-                   }
 
-                );
+            //Here Added Swagger Successfully For Right Now Comment This Code
+            //services.AddSwaggerGen(c =>
+            //       {
+            //           c.SwaggerDoc("v1", new Info { Title = "Core API", Description = "Swagger core API" });
+            //       });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -40,9 +40,8 @@ namespace RabbitMq_webApi
         {
             if (env.IsDevelopment())
             {
-                //loggerFactory.AddConsole(Configuration.GetSection("Logging"));
-                //loggerFactory.AddDebug(); //does all log levels
-                loggerFactory.AddFile("Logs/mylog-{Date}.txt");
+                // Here Successfully Create Log Folder and print all the information but right now comment this code
+               // loggerFactory.AddFile("Logs/mylog-{Date}.txt");
 
                 app.UseDeveloperExceptionPage();
             }
@@ -55,12 +54,11 @@ namespace RabbitMq_webApi
             app.UseHttpsRedirection();
             app.UseMvc();
             app.UseSwagger();
-            app.UseSwaggerUI(c =>
-            {
 
-                c.SwaggerEndpoint("/Swagger/v1/swagger.json", "Core API");
-                }
-            );
+            //Here successFully Call Swagger UI Riight Now Comment this Code
+            //app.UseSwaggerUI(c =>
+            //{c.SwaggerEndpoint("/Swagger/v1/swagger.json", "Core API")}
+            //);
         }
     }
 }
