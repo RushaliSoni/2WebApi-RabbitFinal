@@ -18,10 +18,10 @@ namespace RabbitMq_webApi.Controllers
     {
         private readonly ILogger _logger;
 
-        //public SenderController(ILogger<SenderController> logger)
-        //{
-        //    _logger = logger;
-        //}
+        public SenderController(ILogger<SenderController> logger)
+        {
+            _logger = logger;
+        }
 
 
         [HttpGet]
@@ -49,7 +49,7 @@ namespace RabbitMq_webApi.Controllers
                                      routingKey: "Rushalisoni",
                                      basicProperties: null,
                                      body: body);
-                //_logger.LogInformation(message);
+                _logger.LogInformation(message);
 
 
 
